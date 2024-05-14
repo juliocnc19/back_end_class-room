@@ -1,12 +1,26 @@
 import { Elysia } from "elysia";
 import { useRouter } from "../user/userRouter";
+import { swagger } from '@elysiajs/swagger'
 
 export class Server {
   private app:Elysia
 
   constructor(){
     this.app = new Elysia()
-    this.app.group('/api/v1',(app)=>
+    this.app.use(swagger(
+      {
+          documentation: {
+            info: {
+              title: 'Classroom API',
+              version: '1.0.0'
+          },
+            tags: [
+              { name: 'App', description: 'General endpoints' },
+              { name: 'Auth', description: 'Authentication endpoints' }
+            ]
+          }
+        }
+  )).group('/api/v1',(app)=>
         app.use(useRouter)
     )
   }
