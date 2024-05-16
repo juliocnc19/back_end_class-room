@@ -10,7 +10,11 @@ export const useRouter = new Elysia({prefix: '/users'})
           body:t.Object({
             email:t.String(),
             password:t.String(),
-            user_name:t.String()
+            user_name:t.String(),
+            genderId:t.Number(),
+            phone:t.String(),
+            name:t.String(),
+            last_name:t.String(),
         })
    
     })

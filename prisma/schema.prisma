@@ -13,10 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user{
+model Gender{
+  id Int @id @unique @default(autoincrement())
+  gender String
+  user User[]
+}
+
+model User{
   id String @id @unique @default(uuid())
   email String @unique
   password String
   create_date DateTime @default(now())
   user_name String @unique
+  gender Gender @relation(fields: [genderId],references: [id])
+  genderId Int
+  name String
+  last_name String
+  phone String
 }
+

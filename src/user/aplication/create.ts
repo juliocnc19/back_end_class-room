@@ -7,8 +7,8 @@ export class Createuser{
         private hash: IHash
     ){}
 
-    async run(email:string, password:string,user_name:string){
+    async run(email:string, password:string,user_name:string,genderId:number,phone:string,name:string,last_name:string){
         const hashedPassword = await this.hash.hash(password)
-        return await this.userRepository.create(email,hashedPassword,user_name)
+        return await this.userRepository.create(email,hashedPassword,user_name,genderId,phone,name,last_name)
     }
 }

@@ -11,13 +11,13 @@ export class LoginController{
             return {
                 status: 200,
                 user,
-                message:"User logged in"
+                msg:"User logged in"
             }
         }catch(e){
             const error = e as Error
             return {
                 status: 500,
-                message: error.message
+                msg: error.message
             }
         }
         
