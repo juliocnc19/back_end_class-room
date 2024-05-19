@@ -16,12 +16,14 @@ export class CreateUserController {
       );
       return {
         status: 200,
+        success:true,
         data: user,
       };
     } catch (e) {
       const error = e as Error;
       return {
         status: 500,
+        success:false,
         msg: error.message,
       };
     }

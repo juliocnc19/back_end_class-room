@@ -3,20 +3,26 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run buil.ts",
+    "seed": "bun run src/seed.ts"
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.0.5",
-    "@prisma/client": "5.13.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/nanoid": "^3.0.0",
+    "@types/uuid": "^9.0.8",
     "bcrypt": "^5.1.1",
     "elysia": "latest",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.0.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@prisma/client": "^5.14.0",
     "bun-types": "latest",
-    "prisma": "^5.13.0"
+    "prisma": "^5.14.0"
   },
   "module": "src/index.js"
 }

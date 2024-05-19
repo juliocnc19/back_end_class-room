@@ -1,18 +1,14 @@
 import { Elysia } from "elysia";
 import { useRouter } from "../user/userRouter";
+import { courseRouter } from "../course/courseRouter";
 import { swagger } from '@elysiajs/swagger'
+import { CourseRepository } from "../course/domain/courseRepository";
 
 export class Server {
   private app:Elysia
 
   constructor(){
     this.app = new Elysia()
-    this.app.derive(({headers})=>{
-      const auth = headers['authorization']
-      return {
-        token: auth?.startsWith("Bearer ") ? auth.slice(7) : null
-      }
-    })
     this.app.use(swagger(
       {
           documentation: {
@@ -22,12 +18,15 @@ export class Server {
           },
             tags: [
               { name: 'App', description: 'General endpoints' },
-              { name: 'Auth', description: 'Authentication endpoints' }
+              { name: 'Auth', description: 'Authentication endpoints' },
+              { name: 'Course', description: 'Course endpoints' },
             ]
           }
         }
   )).group('/api/v1',(app)=>
-        app.use(useRouter)
+        app
+        .use(useRouter)
+        .use(courseRouter)
     )
   }
 
