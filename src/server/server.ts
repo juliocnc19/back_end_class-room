@@ -2,7 +2,6 @@ import { Elysia } from "elysia";
 import { useRouter } from "../user/userRouter";
 import { courseRouter } from "../course/courseRouter";
 import { swagger } from '@elysiajs/swagger'
-import { CourseRepository } from "../course/domain/courseRepository";
 
 export class Server {
   private app:Elysia

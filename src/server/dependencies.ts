@@ -13,10 +13,12 @@ import { CreateCourse } from "../course/aplication/create";
 import { FindManyCourse } from "../course/aplication/findMany";
 import { FindOneCourse } from "../course/aplication/findOne";
 import { DeleteCourse } from "../course/aplication/delete";
+import { UpdateCourse } from "../course/aplication/update";
 import { CreateCourseController } from "../course/infraestructure/controllers/creteControlleres";
 import { FindOneController } from "../course/infraestructure/controllers/findControllers";
 import { FindManyController } from "../course/infraestructure/controllers/findManyController";
 import { DeleteCourseController } from "../course/infraestructure/controllers/deleteControllers";
+import { UpdateCourseController } from "../course/infraestructure/controllers/updateController";
 
 
 // Users
@@ -33,8 +35,10 @@ const courseRepository = new CourseRepository()
 const createCourse = new CreateCourse(courseRepository)
 const findMany = new FindManyCourse(courseRepository)
 const findOne = new FindOneCourse(courseRepository)
+const update = new UpdateCourse(courseRepository)
 export const deleteCourse = new DeleteCourse(courseRepository)
 export const createCourseController = new CreateCourseController(createCourse)
 export const findOneController = new FindOneController(findOne)
 export const findManyController = new FindManyController(findMany)
 export const deleteCourseController = new DeleteCourseController(deleteCourse)
+export const updateCourseController = new UpdateCourseController(update)

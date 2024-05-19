@@ -4,6 +4,7 @@ import {
   findManyController,
   findOneController,
   deleteCourseController,
+  updateCourseController
 } from "../server/dependencies";
 
 export const courseRouter = new Elysia({ prefix: "/course" })
@@ -37,4 +38,18 @@ export const courseRouter = new Elysia({ prefix: "/course" })
     detail:{
       tags:["Course"]
     }
+  })
+
+  .put("/update",updateCourseController.run.bind(updateCourseController),{
+    detail:{
+      tags:["Course"]
+    },
+    body: t.Object({
+      id:t.Number(),
+      title:t.String(),
+      description:t.String(),
+      section:t.String(),
+      subject:t.String(),
+      areaId:t.Number()
+    })
   })

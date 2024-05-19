@@ -2,6 +2,7 @@ import { Course } from "./Course";
 import { ICourse } from "./ICourse";
 import { PrismaClient } from "@prisma/client";
 import { nanoid } from "nanoid";
+import { ICourseUpdate } from "./ICouseUpdate";
 
 export class CourseRepository implements ICourse {
   private db: PrismaClient;
@@ -69,7 +70,6 @@ export class CourseRepository implements ICourse {
           id:course.areaId
         }
       })
-
       return new Course(
         course.id,
         course.title,
@@ -82,6 +82,7 @@ export class CourseRepository implements ICourse {
         course.token,
         area!.area
       );
+      
   }
 
   async findMany(ownerId: number): Promise<Course[] | []> {
@@ -114,7 +115,7 @@ export class CourseRepository implements ICourse {
         )
         listCourse.push(course)
       })
-
+      console.log(listCourse)
       return listCourse
   }
 
@@ -144,5 +145,39 @@ export class CourseRepository implements ICourse {
         area!.area
       );
 
+  }
+
+  async update(course: ICourseUpdate): Promise<Course> {
+    const newCouse = await this.db.course.update({
+      where:{
+        id:course.id
+      },
+      data:{
+        title:course.title,
+        description:course.description,
+        section:course.section,
+        subject:course.subject,
+        areaId:course.areaId
+      }
+    })
+
+    const areaName = await this.db.area.findUnique({
+      where:{
+        id:newCouse.areaId
+      }
+    })
+
+    return new Course(
+      newCouse.id,
+      newCouse.title,
+      newCouse.description,
+      newCouse.ownerId,
+      newCouse.owner_name,
+      newCouse.section,
+      newCouse.subject,
+      newCouse.areaId,
+      newCouse.token,
+      areaName!.area
+    )
   }
 }
