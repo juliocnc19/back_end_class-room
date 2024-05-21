@@ -1,3 +1,5 @@
+import { User } from "../../user/domain/User";
+
 export class Course{
     constructor(
         public id: number,
@@ -9,6 +11,7 @@ export class Course{
         public subject: string,
         public areaId: number,
         public token: string,
-        public areaName: string
+        public areaName: string,
+        public users?: any[]
     ){}
 }

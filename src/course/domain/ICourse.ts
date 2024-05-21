@@ -7,4 +7,5 @@ export interface ICourse{
     findMany(ownerId:number):Promise<Array<Course> | []>
     delete(id:number):Promise<Course>
     update(couse:ICourseUpdate):Promise<Course>
+    findUserOfCourse(course_id:number):Promise<Course>
 }

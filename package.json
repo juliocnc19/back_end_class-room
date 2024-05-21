@@ -4,7 +4,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
-    "start": "bun run buil.ts",
+    "build":"bun build ./src/index.ts --outdir ./build --target bun",
+    "start":"bun run ./build/index.js",
     "seed": "bun run src/seed.ts"
   },
   "dependencies": {
@@ -13,10 +14,14 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/nanoid": "^3.0.0",
     "@types/uuid": "^9.0.8",
+    "aws-sdk": "^2.1623.0",
     "bcrypt": "^5.1.1",
+    "bun": "^1.1.8",
     "elysia": "latest",
     "jsonwebtoken": "^9.0.2",
+    "mock-aws-s3": "^4.0.2",
     "nanoid": "^5.0.7",
+    "nock": "^13.5.4",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -24,5 +29,9 @@
     "bun-types": "latest",
     "prisma": "^5.14.0"
   },
-  "module": "src/index.js"
+  "module": "src/index.js",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
 }

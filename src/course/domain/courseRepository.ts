@@ -3,6 +3,7 @@ import { ICourse } from "./ICourse";
 import { PrismaClient } from "@prisma/client";
 import { nanoid } from "nanoid";
 import { ICourseUpdate } from "./ICouseUpdate";
+import { User } from "../../user/domain/User";
 
 export class CourseRepository implements ICourse {
   private db: PrismaClient;
@@ -115,7 +116,6 @@ export class CourseRepository implements ICourse {
         )
         listCourse.push(course)
       })
-      console.log(listCourse)
       return listCourse
   }
 
@@ -178,6 +178,41 @@ export class CourseRepository implements ICourse {
       newCouse.areaId,
       newCouse.token,
       areaName!.area
+    )
+  }
+
+  async findUserOfCourse(course_id:number):Promise<Course>{
+    const course = await this.db.course.findUnique({
+      where:{
+        id:course_id
+      },
+      include:{
+        users:{
+          include:{
+            user:true
+          }
+        },
+        area:{
+          select:{
+            area:true
+          }
+        }
+      }
+      
+    })
+
+    return new Course(
+        course!.id,
+        course!.title,
+        course!.description,
+        course!.ownerId,
+        course!.owner_name,
+        course!.section,
+        course!.subject,
+        course!.areaId,
+        course!.token,
+        course!.area.area,
+        course!.users[0] ? course!.users[0] : [] as any
     )
   }
 }
