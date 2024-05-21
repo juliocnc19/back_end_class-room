@@ -182,6 +182,7 @@ export class CourseRepository implements ICourse {
   }
 
   async findUserOfCourse(course_id:number):Promise<Course>{
+    console.log(course_id)
     const course = await this.db.course.findUnique({
       where:{
         id:course_id

@@ -7,9 +7,10 @@ export class FindUsersOfCourseController{
         private responseData: ResponseData
     ){}
 
-    async run({ params: { id }}:any){
+    async run({ params: { course_id }}:any){
+        console.log(course_id)
         try{
-            const course = await this.findUserOfCourse.run(Number(id))
+            const course = await this.findUserOfCourse.run(Number(course_id))
             const resutl = this.responseData.run(true,"Usuario de curso ayados con exito",course)
             return{
                 status:200,
