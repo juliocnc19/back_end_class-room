@@ -64,4 +64,27 @@ export class UserRepository implements IUser {
       user.last_name,
     );
   }
+
+  async findMany(): Promise<User[]> {
+    const users = await this.db.user.findMany()
+    const listUsers:User[] = []
+
+    if(!users) return []
+
+    users.map((c)=>{
+      const user = new User(
+        c.id,
+        c.email,
+        c.password,
+        c.user_name,
+        c.create_date.toDateString(),
+        c.genderId,
+        c.phone,
+        c.name,
+        c.last_name
+      )
+      listUsers.push(user)
+    })
+    return listUsers
+  }
 }

@@ -1,5 +1,5 @@
 import { Elysia,t } from "elysia";
-import { createUserController, loginController } from "../server/dependencies";
+import { createUserController, loginController, findManyUsersController } from "../server/dependencies";
 
 
 export const useRouter = new Elysia({prefix: '/users'})
@@ -26,4 +26,10 @@ export const useRouter = new Elysia({prefix: '/users'})
                 email:t.String(),
                 password:t.String(),
             })
+    })
+
+    .get("/",findManyUsersController.run.bind(findManyUsersController),{
+        detail:{
+            tags:["Auth"]
+        }
     })

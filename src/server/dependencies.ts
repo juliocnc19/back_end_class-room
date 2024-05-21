@@ -3,9 +3,11 @@ import { ResponseData } from "../utils/response/response";
 //Users
 import { UserRepository } from "../user/infraestructure/userRepository";
 import { Createuser } from "../user/aplication/create";
+import { FindManyUsers } from "../user/aplication/finMany";
 import { CreateUserController } from "../user/infraestructure/controllers/createController";
 import { Hash } from "../services/hash";
 import { LoginController } from "../user/infraestructure/controllers/loginController";
+import { FindManyUsersController } from "../user/infraestructure/controllers/findManyController";
 import { LoginUser } from "../user/aplication/login";
 //import { Jwt } from "../services/jwt";
 
@@ -29,12 +31,14 @@ const responseData = new ResponseData()
 
 // Users
 const userRepository = new UserRepository()
+const findManyUser = new FindManyUsers(userRepository)
 //const jwt = new Jwt()
 const hash = new Hash()
 const createUser = new Createuser(userRepository,hash)
 const loginUser = new LoginUser(userRepository,hash)
 export const createUserController = new CreateUserController(createUser,responseData)
 export const loginController = new LoginController(loginUser,responseData)
+export const findManyUsersController = new FindManyUsersController(findManyUser,responseData)
 
 //Courses
 const courseRepository = new CourseRepository()

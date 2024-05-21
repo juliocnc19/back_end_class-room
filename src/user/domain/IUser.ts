@@ -11,4 +11,5 @@ export interface IUser {
     last_name: string
   ): Promise<User>;
   find(email: string): Promise<User | null>;
+  findMany():Promise<User[] | []>
 }
