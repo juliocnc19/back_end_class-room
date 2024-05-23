@@ -3,8 +3,8 @@ export interface IActivitieUpdate {
   title: string;
   description: string;
   grade: number;
-  start_date: Date;
-  end_date: Date;
+  start_date: string;
+  end_date: string;
   email: string;
   status_id: number;
 }

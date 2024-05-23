@@ -26,6 +26,18 @@ import { DeleteCourseController } from "../course/infraestructure/controllers/de
 import { UpdateCourseController } from "../course/infraestructure/controllers/updateController";
 import { FindUsersOfCourseController } from "../course/infraestructure/controllers/findUserOfCourseController";
 
+//Activities
+import { ActivitiesRepository } from "../activities/domain/activitiesRepository";
+import { CreateActivity } from "../activities/aplication/create";
+import { FindManyActivity } from "../activities/aplication/findMany";
+import { FindOneActivity } from "../activities/aplication/findOne";
+import { DeleteActivity } from "../activities/aplication/delete";
+import { UpdateActivity } from "../activities/aplication/update";
+import { CreateActivityController } from "../activities/infraesctructure/controllers/createController";
+import { FindManyActivityController } from "../activities/infraesctructure/controllers/findManyController";
+import { FindOneActivityController } from "../activities/infraesctructure/controllers/findOneController";
+import { DeleteActivityController } from "../activities/infraesctructure/controllers/deleteController";
+import { UpdateActivityController } from "../activities/infraesctructure/controllers/updateController"
 
 const responseData = new ResponseData()
 
@@ -54,3 +66,17 @@ export const findManyController = new FindManyController(findMany,responseData)
 export const deleteCourseController = new DeleteCourseController(deleteCourse,responseData)
 export const updateCourseController = new UpdateCourseController(update,responseData)
 export const findUserOfCourseController = new FindUsersOfCourseController(findUserOfCourse,responseData)
+
+//Activities
+
+const activitiesRepository = new ActivitiesRepository()
+const createActivity = new CreateActivity(activitiesRepository)
+const findManyActivity = new FindManyActivity(activitiesRepository)
+const findOneActivity = new FindOneActivity(activitiesRepository)
+const deleteActivity = new DeleteActivity(activitiesRepository)
+const updateActivity = new UpdateActivity(activitiesRepository)
+export const createActivityController = new CreateActivityController(createActivity,responseData)
+export const findManyActivityController = new FindManyActivityController(findManyActivity,responseData)
+export const findOneActivityController = new FindOneActivityController(findOneActivity,responseData)
+export const deleteActivityController = new DeleteActivityController(deleteActivity,responseData)
+export const updateActivityController = new UpdateActivityController(updateActivity,responseData)

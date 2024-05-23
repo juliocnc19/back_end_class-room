@@ -11,9 +11,9 @@ export class ActivitiesRepository implements IActivities{
         this.db = new PrismaClient()
     }
 
-    async create(course_id:number, title: string, description: string, grade: number, start_date: Date, end_date: Date, email: string, status_id: number): Promise<Activities> {
-        const startDate = start_date.toDateString()
-        const endDate = end_date.toDateString()
+    async create(course_id:number, title: string, description: string, grade: number, start_date: string, end_date: string, email: string, status_id: number): Promise<Activities> {
+        const startDate = start_date
+        const endDate = end_date
         const activitie = await this.db.activities.create({
             data:{
                 course_id,
@@ -143,8 +143,8 @@ export class ActivitiesRepository implements IActivities{
                 title:activitie.title,
                 description:activitie.description,
                 grade:activitie.grade,
-                start_date:activitie.start_date.toDateString(),
-                end_date:activitie.end_date.toDateString(),
+                start_date:activitie.start_date,
+                end_date:activitie.end_date,
                 email:activitie.email,
                 status_id:activitie.status_id
             }

@@ -1,6 +1,7 @@
 import { Elysia } from "elysia";
 import { useRouter } from "../user/userRouter";
 import { courseRouter } from "../course/courseRouter";
+import { activityRouter } from "../activities/activitiesRoutes";
 import { swagger } from '@elysiajs/swagger'
 
 export class Server {
@@ -19,6 +20,7 @@ export class Server {
               { name: 'App', description: 'General endpoints' },
               { name: 'Auth', description: 'Authentication endpoints' },
               { name: 'Course', description: 'Course endpoints' },
+              { name: 'Activity', description: 'Activity endpoints' },
             ]
           }
         }
@@ -26,6 +28,7 @@ export class Server {
         app
         .use(useRouter)
         .use(courseRouter)
+        .use(activityRouter)
     )
   }
 

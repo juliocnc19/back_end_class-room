@@ -6,7 +6,6 @@ export class FindUserOfCourse{
     ){}
 
     async run(id:number){
-        console.log(id)
         return await this.courseRepository.findUserOfCourse(id)
     }
 }
