@@ -33,6 +33,6 @@ export class Server {
   }
 
   public start(){
-    this.app.listen(3000,()=> console.log("corriendo en el puerto 3000"))
+    this.app.listen(3000 || process.env.PORT,()=> console.log("corriendo en el puerto 3000"))
   }
 }
