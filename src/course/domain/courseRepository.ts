@@ -258,7 +258,23 @@ export class CourseRepository implements ICourse {
     );
   }
 
-  async delteUserOfCourse(idUser: number,idCourse:number): Promise<boolean> {
+  async delteUserOfCourse(idUser: number,idCourse:number): Promise<boolean | number> {
+    const user = await this.db.user.findUnique({
+      where:{
+        id:idUser
+      }
+    })
+
+    if(!user) return 0
+
+    const course = await this.db.course.findUnique({
+      where:{
+        id:idCourse
+      }
+    })
+
+    if(!course) return 1
+
     const res = await this.db.courseEnrollment.delete({
       where:{
         userId_courseId:{
