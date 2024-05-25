@@ -19,12 +19,16 @@ import { FindOneCourse } from "../course/aplication/findOne";
 import { DeleteCourse } from "../course/aplication/delete";
 import { UpdateCourse } from "../course/aplication/update";
 import { FindUserOfCourse } from "../course/aplication/findUserOfCourse";
+import { JoinToCourse } from "../course/aplication/joinToCourse";
+import { DeleteUserOfCourse } from "../course/aplication/deleteUserOfCourse";
 import { CreateCourseController } from "../course/infraestructure/controllers/creteControlleres";
 import { FindOneController } from "../course/infraestructure/controllers/findControllers";
 import { FindManyController } from "../course/infraestructure/controllers/findManyController";
 import { DeleteCourseController } from "../course/infraestructure/controllers/deleteControllers";
 import { UpdateCourseController } from "../course/infraestructure/controllers/updateController";
 import { FindUsersOfCourseController } from "../course/infraestructure/controllers/findUserOfCourseController";
+import { JoinToCourseCotroller } from "../course/infraestructure/controllers/joinToCourseController";
+import { DeleteUserOfCourseController } from "../course/infraestructure/controllers/deleteUserOfCourseController";
 
 //Activities
 import { ActivitiesRepository } from "../activities/domain/activitiesRepository";
@@ -60,12 +64,16 @@ const findOne = new FindOneCourse(courseRepository)
 const update = new UpdateCourse(courseRepository)
 const deleteCourse = new DeleteCourse(courseRepository)
 const findUserOfCourse = new FindUserOfCourse(courseRepository)
+const joinToCourse = new JoinToCourse(courseRepository)
+const deleteUserOfCourse = new DeleteUserOfCourse(courseRepository)
 export const createCourseController = new CreateCourseController(createCourse,responseData)
 export const findOneController = new FindOneController(findOne,responseData)
 export const findManyController = new FindManyController(findMany,responseData)
 export const deleteCourseController = new DeleteCourseController(deleteCourse,responseData)
 export const updateCourseController = new UpdateCourseController(update,responseData)
 export const findUserOfCourseController = new FindUsersOfCourseController(findUserOfCourse,responseData)
+export const joinToCourseController = new JoinToCourseCotroller(joinToCourse,responseData)
+export const deleteUserOfCourseController = new DeleteUserOfCourseController(deleteUserOfCourse,responseData)
 
 //Activities
 

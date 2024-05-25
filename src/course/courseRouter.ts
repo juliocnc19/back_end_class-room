@@ -5,7 +5,9 @@ import {
   findOneController,
   deleteCourseController,
   updateCourseController,
-  findUserOfCourseController
+  findUserOfCourseController,
+  joinToCourseController,
+  deleteUserOfCourseController
 } from "../server/dependencies";
 
 export const courseRouter = new Elysia({ prefix: "/course" })
@@ -55,7 +57,23 @@ export const courseRouter = new Elysia({ prefix: "/course" })
     })
   })
 
-  .get("users/:course_id",findUserOfCourseController.run.bind(findUserOfCourseController),{
+  .get("/users/:course_id",findUserOfCourseController.run.bind(findUserOfCourseController),{
+    detail:{
+      tags:["Course"]
+    }
+  })
+
+  .post("/join",joinToCourseController.run.bind(joinToCourseController),{
+    detail:{
+      tags:["Course"]
+    },
+    body:t.Object({
+      idUser:t.Number(),
+      token:t.String()
+    })
+  })
+  
+  .delete("/user/:idUser/:idCourse",deleteUserOfCourseController.run.bind(deleteUserOfCourseController),{
     detail:{
       tags:["Course"]
     }

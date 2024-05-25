@@ -8,4 +8,6 @@ export interface ICourse{
     delete(id:number):Promise<Course>
     update(couse:ICourseUpdate):Promise<Course>
     findUserOfCourse(course_id:number):Promise<Course>
+    joinToCourse(id:number,token:string):Promise<Course | number>
+    delteUserOfCourse(idUser:number,idCourse:number):Promise<boolean>
 }
