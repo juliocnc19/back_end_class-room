@@ -212,7 +212,7 @@ export class CourseRepository implements ICourse {
       course!.areaId,
       course!.token,
       course!.area.area,
-      course!.users[0] ? course!.users[0] : ([] as any)
+      course!.users ? course!.users : ([] as any)
     );
   }
 
