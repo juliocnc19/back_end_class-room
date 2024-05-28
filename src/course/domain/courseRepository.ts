@@ -235,6 +235,7 @@ export class CourseRepository implements ICourse {
       },
     });
     if (!course) return 1;
+    if(course.id == id) return 2
 
     const jointed = await this.db.courseEnrollment.create({
       data: {
