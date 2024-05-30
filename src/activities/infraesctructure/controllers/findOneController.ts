@@ -20,7 +20,7 @@ export class FindOneActivityController{
             const error = e as Error
             const result = this.responseData.run(false,"Ocurrio un error al obtener la actividad")
             return {
-                status: 200,
+                status: 500,
                 success:false,
                 msg:error.message,
                 result

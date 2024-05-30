@@ -7,4 +7,5 @@ export interface IActivities{
     findMany(course_id:number):Promise<Activities[] | []>
     delete(id:number):Promise<Activities>
     update(activitie:IActivitieUpdate):Promise<Activities>
+    myActivities(idUser:number):Promise<Activities[] | [] | number>
 }

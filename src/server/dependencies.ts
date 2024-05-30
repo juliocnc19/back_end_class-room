@@ -37,11 +37,13 @@ import { FindManyActivity } from "../activities/aplication/findMany";
 import { FindOneActivity } from "../activities/aplication/findOne";
 import { DeleteActivity } from "../activities/aplication/delete";
 import { UpdateActivity } from "../activities/aplication/update";
+import { MyActivities } from "../activities/aplication/myActivities";
 import { CreateActivityController } from "../activities/infraesctructure/controllers/createController";
 import { FindManyActivityController } from "../activities/infraesctructure/controllers/findManyController";
 import { FindOneActivityController } from "../activities/infraesctructure/controllers/findOneController";
 import { DeleteActivityController } from "../activities/infraesctructure/controllers/deleteController";
 import { UpdateActivityController } from "../activities/infraesctructure/controllers/updateController"
+import { MyActivitiesController } from "../activities/infraesctructure/controllers/myActivitiesController";
 
 const responseData = new ResponseData()
 
@@ -83,8 +85,10 @@ const findManyActivity = new FindManyActivity(activitiesRepository)
 const findOneActivity = new FindOneActivity(activitiesRepository)
 const deleteActivity = new DeleteActivity(activitiesRepository)
 const updateActivity = new UpdateActivity(activitiesRepository)
+const myActivities = new MyActivities(activitiesRepository)
 export const createActivityController = new CreateActivityController(createActivity,responseData)
 export const findManyActivityController = new FindManyActivityController(findManyActivity,responseData)
 export const findOneActivityController = new FindOneActivityController(findOneActivity,responseData)
 export const deleteActivityController = new DeleteActivityController(deleteActivity,responseData)
 export const updateActivityController = new UpdateActivityController(updateActivity,responseData)
+export const myActivitiesController = new MyActivitiesController(myActivities,responseData)

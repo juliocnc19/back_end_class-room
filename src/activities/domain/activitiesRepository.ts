@@ -211,4 +211,58 @@ export class ActivitiesRepository implements IActivities{
         )
         
     }
+
+    async myActivities(idUser: number): Promise<Activities[] | [] | number> {
+        console.log("llego aqui")
+        const listActivities: Activities[] = []
+        const user = await this.db.user.findUnique({
+            where:{
+                id:idUser
+            }
+        })
+
+        if(!user) return 0
+
+        const activities = await this.db.activities.findMany({
+            where:{
+                OR:[{course:{users:{some:{userId:idUser}}}}]
+            },
+            include:{
+                status:{
+                    select:{
+                        status:true
+                    }
+                },
+                course:{
+                    select:{
+                        title:true
+                    }
+                }
+            }
+
+        })
+
+        if(!activities) return []
+
+        activities.map((a)=>{
+            const activity = new Activities(
+                a.id,
+                a.course_id,
+                a.course.title,
+                a.title,
+                a.description,
+                a.grade.toNumber(),
+                new Date(a.start_date),
+                new Date(a.end_date),
+                a.email,
+                a.status_id,
+                a.status.status
+            )
+            listActivities.push(activity)
+        })
+
+        return listActivities
+        
+        
+    }
 }
